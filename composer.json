@@ -1,0 +1,44 @@
+{
+    "name": "aislandener/mix-telematics-laravel",
+    "description": "MiX Telematics Communication API with Laravel",
+    "type": "library",
+    "version": "0.1.0",
+    "require": {
+        "php": "^8.0",
+        "jumbojett/openid-connect-php": "^0.9.3",
+        "guzzlehttp/guzzle": "^7.4",
+        "illuminate/support": "^6|^7|^8|^9"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "9.5.11"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Aislandener\\MixTelematicsLaravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aislandener\\MixTelematicsLaravel\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aislandener\\MixTelematicsLaravel\\MixTelematicsServiceProvider"
+            ],
+            "aliases":{
+                "MixTelematics": "Aislandener\\MixTelematicsLaravel\\Facades\\MixTelematics"
+            }
+        }
+    },
+    "authors": [
+        {
+            "name": "Aislan Dener Souza Vicentini",
+            "email": "aislandenersouzavicentini@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
