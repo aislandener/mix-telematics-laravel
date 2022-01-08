@@ -56,6 +56,6 @@ class MixTelematicsLaravelService
     }
 
     public function getDriversOrganisation(){
-        return Http::withToken($this->token)->get($this->restBaseUrl . "/api/drivers/organisation/{$this->organisationId}")->json();
+        return Http::withToken($this->token->access_token)->get($this->restBaseUrl . "/api/drivers/organisation/{$this->organisationId}")->json();
     }
 }
