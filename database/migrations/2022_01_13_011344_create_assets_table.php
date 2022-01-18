@@ -46,6 +46,7 @@ class CreateAssetsTable extends Migration
             $table->string('FuelType');
             $table->string('RegistrationNumber');
             $table->string('Description');
+            $table->timestamps();
         });
     }
 
