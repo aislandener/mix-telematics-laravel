@@ -2,60 +2,53 @@
 
 namespace Aislandener\MixTelematicsLaravel;
 
-use Http;
+use Aislandener\MixTelematicsLaravel\Models\Driver;
+use Aislandener\MixTelematicsLaravel\Services\ActiveEventsService;
+use Aislandener\MixTelematicsLaravel\Services\AssetService;
+use Aislandener\MixTelematicsLaravel\Services\DriversService;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
 use Jumbojett\OpenIDConnectClient;
 use Jumbojett\OpenIDConnectClientException;
 
 class MixTelematicsLaravelService
 {
-    private $clientName;
-    private $clientID;
-    private $clientSecret;
-    private $idBaseUrl;
-    private $restBaseUrl;
-    private $dynamixUserName;
-    private $dynamixUserPassword;
-    private $organisationId;
 
-    private $token;
+    private ActiveEventsService $activeEventsService;
+    private DriversService $driversService;
+    private AssetService $assetService;
 
-    const SCOPE = "offline_access MiX.Integrate";
-
-    public function __construct()
+    public function __construct(ActiveEventsService $activeEventsService, DriversService $driversService, AssetService $assetService)
     {
-        $this->clientName = config('mixtelematics.clientName');
-        $this->clientID = config('mixtelematics.clientID');
-        $this->clientSecret = config('mixtelematics.clientSecret');
-        $this->idBaseUrl = config('mixtelematics.IDBaseUrl');
-        $this->restBaseUrl = config('mixtelematics.RestBaseUrl');
-        $this->dynamixUserName = config('mixtelematics.dynamixUserName');
-        $this->dynamixUserPassword = config('mixtelematics.dynamixUserPassword');
-        $this->organisationId = config('mixtelematics.organisationId');
-
-        $this->token = $this->getToken();
+        $this->driversService = $driversService;
+        $this->activeEventsService = $activeEventsService;
+        $this->assetService = $assetService;
     }
 
-    public function getToken()
+    /**
+     * @return DriversService
+     */
+    public function drivers(): DriversService
     {
-        $oidc = new OpenIDConnectClient(
-            provider_url: $this->idBaseUrl,client_id: $this->clientID, client_secret: $this->clientSecret
-        );
-
-        $oidc->providerConfigParam([
-            'token_endpoint' => "{$this->idBaseUrl}/connect/token"
-        ]);
-        $oidc->addScope([self::SCOPE]);
-        $oidc->setClientName($this->clientName);
-        $oidc->addAuthParam(['username' => $this->dynamixUserName, 'password' => $this->dynamixUserPassword]);
-
-        try {
-            return $oidc->requestResourceOwnerToken(true);
-        } catch (OpenIDConnectClientException $e) {
-            return null;
-        }
+        return $this->driversService;
     }
 
-    public function getDriversOrganisation(){
-        return Http::withToken($this->token->access_token)->get($this->restBaseUrl . "/api/drivers/organisation/{$this->organisationId}")->json();
+    /**
+     * @return ActiveEventsService
+     */
+    public function activeEvents(): ActiveEventsService
+    {
+        return $this->activeEventsService;
     }
+
+    /**
+     * @return AssetService
+     */
+    public function assets(): AssetService
+    {
+        return $this->assetService;
+    }
+
+
 }
