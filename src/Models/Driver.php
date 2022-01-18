@@ -27,4 +27,9 @@ class Driver extends \Illuminate\Database\Eloquent\Model
         'IsSystemDriver' => 'boolean',
         'EmployeeNumber' => 'string'
     ];
+
+    public function assets()
+    {
+        return $this->belongsToMany(Asset::class, 'assets_drivers');
+    }
 }

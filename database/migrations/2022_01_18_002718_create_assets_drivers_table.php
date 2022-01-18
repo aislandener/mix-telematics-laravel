@@ -14,10 +14,8 @@ class CreateAssetsDriversTable extends Migration
     public function up()
     {
         Schema::create('assets_drivers', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('asset_id')->constrained('assets');
             $table->foreignId('driver_id')->constrained('drivers');
-            $table->timestamps();
         });
     }
 

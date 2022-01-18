@@ -4,7 +4,6 @@ namespace Aislandener\MixTelematicsLaravel\Models;
 
 class Asset extends \Illuminate\Database\Eloquent\Model
 {
-
     protected $table = 'assets';
 
     protected $fillable = [
@@ -45,5 +44,10 @@ class Asset extends \Illuminate\Database\Eloquent\Model
         'IsConnectedTrailer' => 'boolean',
         'IsDefaultImage' => 'boolean',
     ];
+
+    public function drivers()
+    {
+        return $this->belongsToMany(Driver::class, 'assets_drivers');
+    }
 
 }
