@@ -35,7 +35,7 @@ class CreateAssetsTable extends Migration
             $table->string('Icon');
             $table->string('Notes');
             $table->string('AdditionalMobileDevice');
-            $table->string('EngineNumber');
+            $table->string('EngineNumber')->nullable();
             $table->string('VinNumber')->nullable();
             $table->string('Year')->nullable();
             $table->string('Model')->nullable();
