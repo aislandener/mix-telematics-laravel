@@ -22,8 +22,8 @@ class CreateDriversTable extends Migration
             $table->bigInteger('SiteId');
             $table->json('AdditionalDetailFields');
             $table->string('ExtendedDriverIdType');
-            $table->string('Country');
-            $table->string('EmployeeNumber');
+            $table->string('Country')->nullable();
+            $table->string('EmployeeNumber')->nullable();
             $table->timestamps();
         });
     }

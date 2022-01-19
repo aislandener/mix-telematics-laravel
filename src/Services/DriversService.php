@@ -14,6 +14,6 @@ class DriversService extends TokenService
     public function getByOrganization(): Collection
     {
         return collect($this->http->get("/api/drivers/organisation/{$this->organisationId}")->json())
-            ->map(fn($el)=> new Driver($el));
+            ->map(fn($el)=> Driver::firstOrNew(['DriverId' => $el['DriverId']],$el));
     }
 }

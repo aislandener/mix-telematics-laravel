@@ -23,7 +23,7 @@ class AssetService extends TokenService
         }
 
         return collect($this->http->get("/api/assets/group/{$groupId}", $params)->json())
-            ->map(fn($el) => new Asset($el));
+            ->map(fn($el) => Asset::firstOrNew(['AssetId', $el['AssetId']],$el));
     }
 
 }

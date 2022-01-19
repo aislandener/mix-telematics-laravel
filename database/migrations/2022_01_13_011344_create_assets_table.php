@@ -21,11 +21,11 @@ class CreateAssetsTable extends Migration
             $table->bigInteger('AssetTypeId');
             $table->bigInteger('SiteId');
             $table->boolean('IsDefaultImage');
-            $table->string('EngineHours');
-            $table->double('Odometer');
+            $table->string('EngineHours')->nullable();
+            $table->double('Odometer')->nullable();
             $table->bigInteger('FmVehicleId');
             $table->bigInteger('DefaultDriverId');
-            $table->float('TargetFuelConsumption');
+            $table->float('TargetFuelConsumption')->nullable();
             $table->string('Country');
             $table->string('CreatedBy');
             $table->string('UserState');
@@ -33,8 +33,8 @@ class CreateAssetsTable extends Migration
             $table->string('AssetImage');
             $table->string('IconColour');
             $table->string('Icon');
-            $table->string('Notes');
-            $table->string('AdditionalMobileDevice');
+            $table->string('Notes')->nullable();
+            $table->string('AdditionalMobileDevice')->nullable();
             $table->string('EngineNumber')->nullable();
             $table->string('VinNumber')->nullable();
             $table->string('Year')->nullable();
@@ -42,8 +42,8 @@ class CreateAssetsTable extends Migration
             $table->string('Make')->nullable();
             $table->string('FleetNumber')->nullable();
             $table->string('TargetHourlyFuelConsumptionUnits');
-            $table->string('TargetFuelConsumptionUnits');
-            $table->string('FuelType');
+            $table->string('TargetFuelConsumptionUnits')->nullable();
+            $table->string('FuelType')->nullable();
             $table->string('RegistrationNumber');
             $table->string('Description');
             $table->timestamps();
