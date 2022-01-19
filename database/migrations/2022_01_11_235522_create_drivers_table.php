@@ -15,7 +15,7 @@ class CreateDriversTable extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('DriverId')->index();
+            $table->bigInteger('DriverId')->unique();
             $table->string('Name');
             $table->boolean('IsSystemDriver');
             $table->bigInteger('FmDriverId');

@@ -15,7 +15,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('AssetId')->index();
+            $table->bigInteger('AssetId')->unique();
             $table->string('CreatedDate');
             $table->boolean('IsConnectedTrailer');
             $table->bigInteger('AssetTypeId');
@@ -36,11 +36,11 @@ class CreateAssetsTable extends Migration
             $table->string('Notes');
             $table->string('AdditionalMobileDevice');
             $table->string('EngineNumber');
-            $table->string('VinNumber');
-            $table->string('Year');
-            $table->string('Model');
-            $table->string('Make');
-            $table->string('FleetNumber');
+            $table->string('VinNumber')->nullable();
+            $table->string('Year')->nullable();
+            $table->string('Model')->nullable();
+            $table->string('Make')->nullable();
+            $table->string('FleetNumber')->nullable();
             $table->string('TargetHourlyFuelConsumptionUnits');
             $table->string('TargetFuelConsumptionUnits');
             $table->string('FuelType');
