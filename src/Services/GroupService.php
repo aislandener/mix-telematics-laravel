@@ -16,11 +16,10 @@ class GroupService extends TokenService
             'Type' => $response['Type'],
             'Name' => $response['Name'],
         ]);
-        $master->fill([
-            'GroupId' => $response['GroupId'],
+        $master->update([
             'Type' => $response['Type'],
             'Name' => $response['Name'],
-        ])->save();
+        ]);
 
         collect($response['SubGroups'])->each(function($el) use ($master){
             $child = Group::firstOrCreate([
@@ -29,11 +28,10 @@ class GroupService extends TokenService
                 'Type' => $el['Type'],
                 'Name' => $el['Name'],
             ]);
-            $child->fill([
-                'GroupId' => $el['GroupId'],
+            $child->update([
                 'Type' => $el['Type'],
                 'Name' => $el['Name'],
-            ])->save();
+            ]);
             $child->parent()->associate($master)->save();
 
             if(!empty($el['SubGroups'])){
@@ -44,11 +42,10 @@ class GroupService extends TokenService
                         'Type' => $sub['Type'],
                         'Name' => $sub['Name'],
                     ]);
-                    $subGroup->fill([
-                        'GroupId' => $child['GroupId'],
+                    $subGroup->update([
                         'Type' => $child['Type'],
                         'Name' => $child['Name'],
-                    ])->save();
+                    ]);
                     $subGroup->parent()->associate($child)->save();
                 });
             }
