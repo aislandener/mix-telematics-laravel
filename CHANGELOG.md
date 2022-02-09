@@ -1,3 +1,10 @@
+## 0.3.0
+
+* Injection Dependency from Laravel
+* Create Migration for Groups
+* Create Model for Groups
+* Create Seeder for Groups
+
 ## 0.2.0
 
 * Create Migration for Assets
