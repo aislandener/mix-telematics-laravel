@@ -43,8 +43,8 @@ class GroupService extends TokenService
                         'Name' => $sub['Name'],
                     ]);
                     $subGroup->update([
-                        'Type' => $child['Type'],
-                        'Name' => $child['Name'],
+                        'Type' => $sub['Type'],
+                        'Name' => $sub['Name'],
                     ]);
                     $subGroup->parent()->associate($child)->save();
                 });
