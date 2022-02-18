@@ -3,12 +3,15 @@
 namespace Aislandener\MixTelematicsLaravel\Services;
 
 use Aislandener\MixTelematicsLaravel\Models\Group;
+use Illuminate\Console\Command;
 
 class GroupService extends TokenService
 {
-    public function saveInDatabase(): Group
+    public function saveInDatabase(Command $command = null): Group
     {
         $response =  collect($this->http->get("/api/organisationgroups/subgroups/{$this->organisationId}")->json());
+
+        $command?->warn("Register master group");
 
         $master = Group::firstOrCreate([
             'GroupId' => $response['GroupId']
@@ -21,7 +24,13 @@ class GroupService extends TokenService
             'Name' => $response['Name'],
         ]);
 
-        collect($response['SubGroups'])->each(function($el) use ($master){
+        $subGroup = collect($response['SubGroups']);
+        $bar = $command?->getOutput()?->createProgressBar($subGroup->count());
+
+        $command?->warn("Insert SubGroups");
+        $bar?->start();
+
+        $subGroup->each(function($el) use ($master, $bar){
             $child = Group::firstOrCreate([
                 'GroupId' => $el['GroupId']
             ], [
@@ -49,7 +58,11 @@ class GroupService extends TokenService
                     $subGroup->parent()->associate($child)->save();
                 });
             }
+            $bar?->advance();
         });
+
+        $bar?->finish();
+        $command?->newLine(2);
         return $master;
     }
 }

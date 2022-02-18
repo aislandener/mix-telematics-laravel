@@ -2,13 +2,12 @@
 
 namespace Aislandener\MixTelematicsLaravel;
 
+use Aislandener\MixTelematicsLaravel\Command\UpdateDataCommand;
 use Aislandener\MixTelematicsLaravel\Services\ActiveEventsService;
 use Aislandener\MixTelematicsLaravel\Services\AssetService;
 use Aislandener\MixTelematicsLaravel\Services\DriversService;
 use Aislandener\MixTelematicsLaravel\Services\GroupService;
-use Aislandener\MixTelematicsLaravel\Services\TokenService;
 use Illuminate\Support\ServiceProvider;
-use JetBrains\PhpStorm\Pure;
 
 class MixTelematicsServiceProvider extends ServiceProvider
 {
@@ -29,6 +28,7 @@ class MixTelematicsServiceProvider extends ServiceProvider
     {
         if($this->app->runningInConsole()) {
             $this->publishConfig();
+            $this->initCommands();
             $this->loadMigrationsFrom(__DIR__. '/../database/migrations');
         }
     }
@@ -85,5 +85,12 @@ class MixTelematicsServiceProvider extends ServiceProvider
         $this->publishes([
             $configPath => $publishPath
         ], 'mix-config');
+    }
+
+    private function initCommands()
+    {
+        $this->commands([
+            UpdateDataCommand::class
+        ]);
     }
 }

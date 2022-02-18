@@ -1,3 +1,8 @@
+## 0.4.0
+
+* Command for load data
+* Refactor services to Command class 
+
 ## 0.3.0
 
 * Injection Dependency from Laravel
