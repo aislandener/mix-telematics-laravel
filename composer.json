@@ -2,7 +2,7 @@
     "name": "aislandener/mix-telematics-laravel",
     "description": "MiX Telematics Communication API with Laravel",
     "type": "library",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "require": {
         "php": "^8.0",
         "jumbojett/openid-connect-php": "^0.9.3",

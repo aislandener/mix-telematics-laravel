@@ -1,3 +1,7 @@
+## 0.4.1
+
+* Command in asset with null safe.
+
 ## 0.4.0
 
 * Command for load data
