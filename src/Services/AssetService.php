@@ -39,13 +39,13 @@ class AssetService extends TokenService
                 $asset = Asset::create($el);
             }
 
-            $bar->advance();
+            $bar?->advance();
             return $asset;
         });
 
         $bar?->finish();
 
-        $command->newLine(2);
+        $command?->newLine(2);
         return $collection;
     }
 
