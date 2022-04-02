@@ -1,3 +1,7 @@
+## 0.4.2
+
+* Relationship adjustment between tables
+
 ## 0.4.1
 
 * Command in asset with null safe.
