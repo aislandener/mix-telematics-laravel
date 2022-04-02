@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -48,19 +50,35 @@ class Group extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|null
+     * @return BelongsTo|null
      */
-    public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo|null
+    public function parent(): ?BelongsTo
     {
         return $this->belongsTo($this,'group_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|null
+     * @return HasMany|null
      */
-    public function subGroups(): \Illuminate\Database\Eloquent\Relations\HasMany|null
+    public function subGroups(): ?HasMany
     {
         return $this->hasMany($this, 'group_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function drivers(): HasMany
+    {
+        return $this->hasMany(Driver::class,'SiteId', 'GroupId');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function assets(): HasMany
+    {
+        return $this->hasMany(Asset::class, 'SiteId','GroupId');
     }
 
 }

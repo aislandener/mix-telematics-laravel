@@ -2,7 +2,11 @@
 
 namespace Aislandener\MixTelematicsLaravel\Models;
 
-class Asset extends \Illuminate\Database\Eloquent\Model
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Asset extends Model
 {
     protected $table = 'assets';
 
@@ -45,9 +49,20 @@ class Asset extends \Illuminate\Database\Eloquent\Model
         'IsDefaultImage' => 'boolean',
     ];
 
-    public function drivers()
+    /**
+     * @return BelongsToMany
+     */
+    public function drivers(): BelongsToMany
     {
         return $this->belongsToMany(Driver::class, 'assets_drivers');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function group(): BelongsTo
+    {
+        return $this->belongsTo(Group::class,'SiteId','GroupId');
     }
 
 }
