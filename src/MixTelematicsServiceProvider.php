@@ -7,6 +7,7 @@ use Aislandener\MixTelematicsLaravel\Services\ActiveEventsService;
 use Aislandener\MixTelematicsLaravel\Services\AssetService;
 use Aislandener\MixTelematicsLaravel\Services\DriversService;
 use Aislandener\MixTelematicsLaravel\Services\GroupService;
+use Aislandener\MixTelematicsLaravel\Services\PositionService;
 use Illuminate\Support\ServiceProvider;
 
 class MixTelematicsServiceProvider extends ServiceProvider
@@ -42,7 +43,8 @@ class MixTelematicsServiceProvider extends ServiceProvider
             GroupService::class,
             DriversService::class,
             AssetService::class,
-            ActiveEventsService::class
+            ActiveEventsService::class,
+            PositionService::class,
         ];
         $this->app->when($services)
             ->needs('$clientName')

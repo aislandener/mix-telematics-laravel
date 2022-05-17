@@ -1,6 +1,13 @@
+## 0.5.0
+* Create migration for Position.
+* Create model for Position.
+* Command for populate Position.
+* Relationships Asset <---> Position
+* Relationships Driver <---> Position
+
 ## 0.4.2
 
-* Relationship adjustment between tables
+* Relationship adjustment between tables.
 
 ## 0.4.1
 

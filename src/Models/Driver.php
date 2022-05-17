@@ -5,6 +5,7 @@ namespace Aislandener\MixTelematicsLaravel\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Sanctum\HasApiTokens;
 
 class Driver extends Model
@@ -45,5 +46,10 @@ class Driver extends Model
     public function group():BelongsTo
     {
         return $this->belongsTo(Group::class,'SiteId', 'GroupId');
+    }
+
+    public function position() : HasOne
+    {
+        return $this->hasOne(Position::class, 'DriverId', 'DriverId');
     }
 }

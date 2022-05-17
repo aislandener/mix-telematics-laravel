@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssetsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -26,7 +26,7 @@ class CreateAssetsTable extends Migration
             $table->bigInteger('FmVehicleId');
             $table->bigInteger('DefaultDriverId');
             $table->float('TargetFuelConsumption')->nullable();
-            $table->string('Country');
+            $table->string('Country')->nullable();
             $table->string('CreatedBy');
             $table->string('UserState');
             $table->text('AssetImageUrl');
@@ -59,4 +59,4 @@ class CreateAssetsTable extends Migration
     {
         Schema::dropIfExists('assets');
     }
-}
+};
