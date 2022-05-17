@@ -1,3 +1,7 @@
+## 0.5.1
+* Null safely in relationship Asset <---> Position
+* Null safely in relationship Driver <---> Position
+
 ## 0.5.0
 * Create migration for Position.
 * Create model for Position.

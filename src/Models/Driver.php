@@ -48,7 +48,7 @@ class Driver extends Model
         return $this->belongsTo(Group::class,'SiteId', 'GroupId');
     }
 
-    public function position() : HasOne
+    public function position() : ?HasOne
     {
         return $this->hasOne(Position::class, 'DriverId', 'DriverId');
     }
