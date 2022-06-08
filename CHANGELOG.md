@@ -1,3 +1,7 @@
+## 0.6.0
+* Create Model Trip (memory only)
+* Create Service Trip
+
 ## 0.5.1
 * Null safely in relationship Asset <---> Position
 * Null safely in relationship Driver <---> Position
