@@ -1,3 +1,6 @@
+## 0.6.1
+* TripsServices mapped in MixTelematics Facade
+
 ## 0.6.0
 * Create Model Trip (memory only)
 * Create Service Trip
